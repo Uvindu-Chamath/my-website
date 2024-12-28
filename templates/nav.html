@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 2rem;
+            background: linear-gradient(90deg, rgba(131,58,180,1) 0%, rgba(74,20,140,1) 0%, rgba(156,39,176,1) 100%); /* New gradient color */
+            color: white;
+        }
+
+        .logo {
+            height: 50px;
+            border-radius: 50%;
+            margin-right: 1rem; /* Add margin to the right of the logo */
+        }
+
+        .name {
+            margin: 0;
+            font-size: 1.5rem;
+            flex-grow: 1; /* Ensure the name takes up available space */
+            color: white;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            margin: 0;
+            padding: 0;
+        }
+
+        .nav-links li {
+            margin-left: 2rem;
+        }
+
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            font-size: 1.1rem;
+            transition: color 0.8s ease, transform 0.8s ease; /* Add transition for color and transform */
+        }
+
+        .nav-links a:hover {
+            color: #F50057; /* Change hover color to gold */
+            transform: scale(1.1); /* Add scale effect on hover */
+        }
+
+        @media screen and (max-width: 768px) {
+            .nav-links {
+                display: none;
+                width: 100%;
+                position: absolute;
+                top: 70px;
+                left: 0;
+                background-color: #333;
+                flex-direction: column;
+                align-items: center;
+                padding: 20px 0;
+            }
+
+            .nav-links.active {
+                display: flex;
+            }
+
+            .nav-links li {
+                margin: 1rem 0;
+            }
+
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <img src="static/logo.jpg" alt="logo" class="logo">
+        <h1 class="name">Uvindu Chamath</h1>
+        <ul class="nav-links">
+            <li><a href="#">Home</a></li>
+            <li><a href="#">About</a></li>
+            <li><a href="#">Services</a></li>
+            <li><a href="#">Contact</a></li>
+        </ul>
+    </nav>
+</body>
+</html>
