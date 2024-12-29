@@ -13,13 +13,22 @@
             transform: scale(1.1);
             background-color: rgba(255, 255, 255, 0.2);
         }
+        .footer-dark {
+            background: linear-gradient(to bottom, #1a1f24, #24292e);
+            box-shadow: 0 -4px 10px rgba(0,0,0,0.1);
+        }
+        .copyright-section {
+            background-color: #161a1e;  /* Darker than the footer */
+            color: white;
+            border-top: 1px solid rgba(255,255,255,0.1);
+        }
     </style>
 </head>
 <body>
     <!-- Remove the container if you want to extend the Footer to full width. -->
     <!-- <div class="container my-5"> -->
 
-    <footer class="text-center text-white" style="background-color: #24292e; left: 0; bottom: 0; width: 100%;">
+    <footer class="text-center text-white footer-dark" style="left: 0; bottom: 0; width: 100%;">
     <!-- Grid container -->
     <div class="container p-4 pb-0">
       <!-- Section: Social media -->
@@ -59,7 +68,7 @@
     <!-- Grid container -->
   
     <!-- Copyright -->
-    <div class="btn-custom p-3" style="background-color: rgba(0, 0, 0, 0.2); color: white;">
+    <div class="text-center p-3 copyright-section">
       © 2020 Copyright: Uvindu Chamath
     </div>
     <!-- Copyright -->
