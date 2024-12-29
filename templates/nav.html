@@ -3,6 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Add Font Awesome CDN link -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <style>
         .navbar {
             display: flex;
@@ -40,13 +42,42 @@
         .profile {
             display: flex;
             align-items: center;
+            position: relative;
+            cursor: pointer;
         }
 
         .profile img {
             height: 32px;
             border-radius: 50%;
             margin-left: 1rem;
-            cursor: pointer;
+        }
+
+        .dropdown-menu {
+            display: none;
+            position: absolute;
+            top: 40px;
+            right: 0;
+            background-color: #24292e;
+            border: 1px solid #444;
+            border-radius: 5px;
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+            z-index: 1;
+        }
+
+        .dropdown-menu a {
+            color: white;
+            padding: 12px 16px;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+        }
+
+        .dropdown-menu a i {
+            margin-right: 8px;
+        }
+
+        .dropdown-menu a:hover {
+            background-color: #444;
         }
 
         .hamburger {
@@ -98,9 +129,15 @@
             <li><a href="#">Services</a></li>
             <li><a href="#">Contact</a></li>
         </ul>
-        <div class="profile">
+        <div class="profile" onclick="toggleDropdown()">
             <span>{{username}}</span>
             <img src="static/logo.jpg" alt="profile picture" class="profile">
+            <div class="dropdown-menu">
+                <a href="#"><i class="fas fa-user"></i>Your profile</a>
+                <a href="#"><i class="fas fa-book"></i>Your repositories</a>
+                <a href="#"><i class="fas fa-cog"></i>Settings</a>
+                <a href="#"><i class="fas fa-sign-out-alt"></i>Sign out</a>
+            </div>
         </div>
         <div class="hamburger" onclick="toggleMenu()">
             <div></div>
@@ -113,6 +150,19 @@
             const navLinks = document.querySelector('.nav-links');
             navLinks.classList.toggle('active');
         }
+
+        function toggleDropdown() {
+            const dropdownMenu = document.querySelector('.dropdown-menu');
+            dropdownMenu.classList.toggle('show');
+        }
+
+        document.addEventListener('click', function(event) {
+            const profile = document.querySelector('.profile');
+            const dropdownMenu = document.querySelector('.dropdown-menu');
+            if (!profile.contains(event.target)) {
+                dropdownMenu.classList.remove('show');
+            }
+        });
     </script>
 </body>
 </html>
