@@ -10,7 +10,7 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 0.5rem 1rem;
+            padding: 1rem 2rem;  /* Increased padding */
             background: #24292e;
             color: white;
             position: relative;
@@ -31,12 +31,36 @@
         .nav-links a {
             color: white;
             text-decoration: none;
-            font-size: 0.875rem;
-            transition: color 0.3s ease;
+            font-size: 1rem;  /* Increased font size */
+            padding: 0.5rem 1rem;  /* Added padding around links */
+            position: relative;
+            transition: all 0.3s ease;
         }
 
         .nav-links a:hover {
-            color: #0366d6;
+            color: #2ecc71;
+            transform: translateY(-2px);
+            background: linear-gradient(135deg, 
+                rgba(46, 204, 113, 0.1) 0%,
+                rgba(39, 174, 96, 0.1) 100%
+            );
+            border-radius: 4px;
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            width: 0;
+            height: 2px;
+            background: linear-gradient(90deg, #2ecc71 0%, #27ae60 100%);
+            transition: all 0.3s ease;
+            transform: translateX(-50%);
+        }
+
+        .nav-links a:hover::after {
+            width: 80%;
         }
 
         .profile {
@@ -47,21 +71,37 @@
         }
 
         .profile img {
-            height: 32px;
+            height: 38px;  /* Increased profile image size */
             border-radius: 50%;
             margin-left: 1rem;
+            transition: transform 0.2s ease, opacity 0.2s ease;
+        }
+
+        .profile img.clicked {
+            transform: scale(0.95);
+            opacity: 0.7;
         }
 
         .dropdown-menu {
-            display: none;
+            display: block;
             position: absolute;
-            top: 40px;
+            top: 50px;  /* Adjusted dropdown position */
             right: 0;
             background-color: #24292e;
             border: 1px solid #444;
             border-radius: 5px;
             box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
             z-index: 1;
+            opacity: 0;
+            transform: translateY(-10px);
+            pointer-events: none;
+            transition: opacity 0.2s ease, transform 0.2s ease;
+        }
+
+        .dropdown-menu.show {
+            opacity: 1;
+            transform: translateY(0);
+            pointer-events: auto;
         }
 
         .dropdown-menu a {
@@ -99,7 +139,7 @@
                 display: none;
                 width: 100%;
                 position: absolute;
-                top: 50px;
+                top: 65px;  /* Adjusted mobile menu position */
                 left: 0;
                 background-color: #24292e;
                 flex-direction: column;
@@ -119,6 +159,12 @@
                 display: flex;
             }
         }
+
+        .profile span {
+            transition: transform 0.2s ease, opacity 0.2s ease;
+            display: inline-block;
+            margin-left: 1rem;  /* Changed from margin-right to margin-left */
+        }
     </style>
 </head>
 <body>
@@ -129,9 +175,9 @@
             <li><a href="#">Services</a></li>
             <li><a href="#">Contact</a></li>
         </ul>
-        <div class="profile" onclick="toggleDropdown()">
-            <span>{{username}}</span>
-            <img src="static/logo.jpg" alt="profile picture" class="profile">
+        <div class="profile">
+            <span onclick="handleClick(event, 'username')">{{username}}</span>
+            <img src="static/logo.jpg" alt="profile picture" class="profile" onclick="handleClick(event, 'image')">
             <div class="dropdown-menu">
                 <a href="#"><i class="fas fa-user"></i>Your profile</a>
                 <a href="#"><i class="fas fa-book"></i>Your repositories</a>
@@ -151,18 +197,57 @@
             navLinks.classList.toggle('active');
         }
 
-        function toggleDropdown() {
+        function toggleDropdown(event) {
+            event.stopPropagation();
             const dropdownMenu = document.querySelector('.dropdown-menu');
-            dropdownMenu.classList.toggle('show');
+            const isShown = dropdownMenu.classList.contains('show');
+            
+            // Close any open dropdowns first
+            hideAllDropdowns();
+            
+            if (!isShown) {
+                dropdownMenu.classList.add('show');
+            }
         }
 
-        document.addEventListener('click', function(event) {
-            const profile = document.querySelector('.profile');
-            const dropdownMenu = document.querySelector('.dropdown-menu');
-            if (!profile.contains(event.target)) {
-                dropdownMenu.classList.remove('show');
+        function hideAllDropdowns() {
+            const dropdowns = document.querySelectorAll('.dropdown-menu');
+            dropdowns.forEach(dropdown => dropdown.classList.remove('show'));
+        }
+
+        // Close dropdown when clicking outside
+        document.addEventListener('click', hideAllDropdowns);
+
+        function handleClick(event, type) {
+            // Handle animation
+            if (type === 'username') {
+                animateUsername(event);
+            } else {
+                animateProfilePic(event);
             }
-        });
+            // Handle dropdown
+            toggleDropdown(event);
+        }
+
+        function animateUsername(event) {
+            event.stopPropagation();
+            const username = event.target;
+            username.classList.add('clicked');
+            
+            setTimeout(() => {
+                username.classList.remove('clicked');
+            }, 200);
+        }
+
+        function animateProfilePic(event) {
+            event.stopPropagation();
+            const profilePic = event.target;
+            profilePic.classList.add('clicked');
+            
+            setTimeout(() => {
+                profilePic.classList.remove('clicked');
+            }, 200);
+        }
     </script>
 </body>
 </html>
