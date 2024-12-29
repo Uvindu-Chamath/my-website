@@ -77,14 +77,24 @@
             box-shadow: 0 2px 4px rgba(155, 77, 202, 0.2);
         }
 
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+            100% { transform: scale(1); }
+        }
+
+        @keyframes clickEffect {
+            0% { transform: scale(0.95); }
+            100% { transform: scale(1); }
+        }
+
         .btn-custom {
-            background: linear-gradient(45deg, #9b4dca 0%, #ff416c 50%, #ff4b2b 100%);
-            background-size: 200% auto;
+            background: #9b4dca;
             border: none;
             color: white;
             padding: 0.75rem 2rem;
             border-radius: 25px;
-            transition: 0.5s ease;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
             margin: 0.5rem;
             min-width: 120px;
             font-weight: 600;
@@ -92,18 +102,20 @@
             position: relative;
             overflow: hidden;
             z-index: 1;
+            cursor: pointer;
         }
 
         .btn-custom:hover {
-            background-position: right center;
-            transform: translateY(-3px);
+            background: #8a44b5;
+            transform: translateY(-2px);
             box-shadow: 0 7px 20px rgba(155, 77, 202, 0.3);
             color: white;
+            animation: pulse 1s infinite;
         }
 
         .btn-custom:active {
-            transform: translateY(-1px);
-            box-shadow: 0 3px 10px rgba(155, 77, 202, 0.2);
+            transform: translateY(0);
+            animation: clickEffect 0.2s ease-out;
         }
 
         .btn-custom::after {
