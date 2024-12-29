@@ -1,22 +1,22 @@
 <style>
     @keyframes pulse {
-        0% { transform: scale(1); }
-        50% { transform: scale(1.05); }
-        100% { transform: scale(1); }
+        0% { transform: scale(1) translateY(0); }
+        50% { transform: scale(1.05) translateY(-3px); }
+        100% { transform: scale(1) translateY(0); }
     }
 
-    @keyframes clickEffect {
-        0% { transform: scale(0.95); }
-        100% { transform: scale(1); }
+    @keyframes shine {
+        0% { background-position: 200% center; }
+        100% { background-position: -200% center; }
     }
 
     .btn-apply {
-        background: linear-gradient(90deg, rgba(4,218,0,1) 0%, rgba(0,255,12,1) 100%);
+        background: linear-gradient(90deg, rgba(4,218,0,1) 0%, rgba(0,255,12,1) 0%, rgba(224,255,0,1) 100%);
         border: none;
         color: white;
-        padding: 0.75rem 1.5rem;
+        padding: 0.75rem 2rem;
         border-radius: 25px;
-        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
         font-weight: 600;
         letter-spacing: 0.5px;
         position: relative;
@@ -25,23 +25,43 @@
         text-decoration: none;
         display: inline-block;
         cursor: pointer;
+        text-shadow: 0 1px 3px rgba(0,0,0,0.2);
+        box-shadow: 0 4px 15px rgba(4,218,0,0.2);
     }
 
     .btn-apply:hover {
-        background: linear-gradient(90deg, rgba(4,218,0,0.9) 0%, rgba(0,255,12,0.9) 100%);
+        background: linear-gradient(90deg, rgba(4,218,0,1) 0%, rgba(0,255,12,1) 0%, rgba(224,255,0,1) 100%);
+        background-size: 200% auto;
+        animation: pulse 1.5s infinite, shine 3s linear infinite;
         transform: translateY(-2px);
-        box-shadow: 0 7px 20px rgba(4,218,0,0.4);
+        box-shadow: 0 7px 25px rgba(4,218,0,0.4);
         color: white;
-        animation: pulse 1s infinite;
     }
 
     .btn-apply:active {
-        transform: translateY(0);
-        animation: clickEffect 0.2s ease-out;
+        transform: translateY(1px);
+        box-shadow: 0 4px 8px rgba(4,218,0,0.3);
+        animation: none;
     }
 
     .btn-apply::before {
-        display: none;
+        content: '';
+        position: absolute;
+        top: 0;
+        left: -100%;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(
+            120deg,
+            transparent,
+            rgba(255, 255, 255, 0.3),
+            transparent
+        );
+        transition: 0.5s;
+    }
+
+    .btn-apply:hover::before {
+        left: 100%;
     }
 </style>
 
