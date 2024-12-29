@@ -8,24 +8,10 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 1rem 2rem;
-            background: linear-gradient(90deg, rgba(131,58,180,1) 0%, rgba(74,20,140,1) 0%, rgba(156,39,176,1) 100%);
+            padding: 0.5rem 1rem;
+            background: #24292e;
             color: white;
             position: relative;
-        }
-
-        .logo {
-            height: 50px;
-            border-radius: 50%;
-            margin-right: 1rem;
-            cursor: pointer;
-        }
-
-        .name {
-            margin: 0;
-            font-size: 1.5rem;
-            flex-grow: 1;
-            color: white;
         }
 
         .nav-links {
@@ -33,22 +19,34 @@
             list-style: none;
             margin: 0;
             padding: 0;
+            flex-grow: 1;
         }
 
         .nav-links li {
-            margin-left: 2rem;
+            margin-left: 1rem;
         }
 
         .nav-links a {
             color: white;
             text-decoration: none;
-            font-size: 1.1rem;
-            transition: color 0.3s ease, transform 0.3s ease;
+            font-size: 0.875rem;
+            transition: color 0.3s ease;
         }
 
         .nav-links a:hover {
-            color: #F50057;
-            transform: scale(1.1);
+            color: #0366d6;
+        }
+
+        .profile {
+            display: flex;
+            align-items: center;
+        }
+
+        .profile img {
+            height: 32px;
+            border-radius: 50%;
+            margin-left: 1rem;
+            cursor: pointer;
         }
 
         .hamburger {
@@ -70,9 +68,9 @@
                 display: none;
                 width: 100%;
                 position: absolute;
-                top: 70px;
+                top: 50px;
                 left: 0;
-                background-color: #333;
+                background-color: #24292e;
                 flex-direction: column;
                 align-items: center;
                 padding: 20px 0;
@@ -94,14 +92,16 @@
 </head>
 <body>
     <nav class="navbar">
-        <img src="static/logo.jpg" alt="logo" class="logo">
-        <h1 class="name">Uvindu Chamath</h1>
         <ul class="nav-links">
             <li><a href="#">Home</a></li>
             <li><a href="#">About</a></li>
             <li><a href="#">Services</a></li>
             <li><a href="#">Contact</a></li>
         </ul>
+        <div class="profile">
+            <span>{{username}}</span>
+            <img src="static/logo.jpg" alt="profile picture" class="profile">
+        </div>
         <div class="hamburger" onclick="toggleMenu()">
             <div></div>
             <div></div>

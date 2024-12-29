@@ -26,10 +26,11 @@ JOBS = [
         'description': 'Work on the Apple iPhone'
     }
 ]
+username = 'Uvindu Chamath'
 
 @app.route('/')
 def home():
-    return render_template('home.html', jobs=JOBS)
+    return render_template('home.html', jobs=JOBS, username=username)
 
 @app.route('/api/jobs')
 def list_jobs():
