@@ -60,10 +60,7 @@
             margin-bottom: 2rem;
             position: relative;
             padding-bottom: 1rem;
-            background: linear-gradient(90deg, #9b4dca 0%, #ff416c 50%, #ff4b2b 100%);
-            -webkit-background-clip: text;
-            background-clip: text;
-            color: transparent;
+            color: #24292e;  /* Changed to solid black color */
         }
 
         .section-title::after {
@@ -78,6 +75,53 @@
             border-radius: 2px;
             opacity: 0.8;
             box-shadow: 0 2px 4px rgba(155, 77, 202, 0.2);
+        }
+
+        .btn-custom {
+            background: linear-gradient(45deg, #9b4dca 0%, #ff416c 50%, #ff4b2b 100%);
+            background-size: 200% auto;
+            border: none;
+            color: white;
+            padding: 0.75rem 2rem;
+            border-radius: 25px;
+            transition: 0.5s ease;
+            margin: 0.5rem;
+            min-width: 120px;
+            font-weight: 600;
+            letter-spacing: 0.5px;
+            position: relative;
+            overflow: hidden;
+            z-index: 1;
+        }
+
+        .btn-custom:hover {
+            background-position: right center;
+            transform: translateY(-3px);
+            box-shadow: 0 7px 20px rgba(155, 77, 202, 0.3);
+            color: white;
+        }
+
+        .btn-custom:active {
+            transform: translateY(-1px);
+            box-shadow: 0 3px 10px rgba(155, 77, 202, 0.2);
+        }
+
+        .btn-custom::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(45deg, #ff4b2b 0%, #ff416c 50%, #9b4dca 100%);
+            background-size: 200% auto;
+            z-index: -1;
+            transition: 0.5s ease;
+            opacity: 0;
+        }
+
+        .btn-custom:hover::after {
+            opacity: 1;
         }
 
         .jobs-container {
