@@ -7,12 +7,30 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <style>
         .btn-floating {
-            transition: transform 0.3s ease, background-color 0.3s ease;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
         }
+        
         .btn-floating:hover {
-            transform: scale(1.1);
-            background-color: rgba(255, 255, 255, 0.2);
+            transform: translateY(-3px);
+            background: linear-gradient(90deg, rgba(4,218,0,1) 0%, rgba(0,255,12,1) 100%);
+            border-color: transparent;
+            box-shadow: 0 5px 15px rgba(4,218,0,0.3);
         }
+
+        .btn-floating:active {
+            transform: translateY(-1px);
+        }
+
+        .btn-floating i {
+            transition: all 0.3s ease;
+        }
+
+        .btn-floating:hover i {
+            transform: scale(1.1);
+        }
+
         .footer-dark {
             background: linear-gradient(to bottom, #1a1f24, #24292e);
             box-shadow: 0 -4px 10px rgba(0,0,0,0.1);
