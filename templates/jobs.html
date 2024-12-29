@@ -1,3 +1,49 @@
+<style>
+    .btn-apply {
+        background: linear-gradient(45deg, #9b4dca 0%, #ff416c 50%, #ff4b2b 100%);
+        background-size: 200% auto;
+        border: none;
+        color: white;
+        padding: 0.75rem 1.5rem;
+        border-radius: 25px;
+        transition: all 0.5s ease;
+        font-weight: 600;
+        letter-spacing: 0.5px;
+        position: relative;
+        overflow: hidden;
+        z-index: 1;
+        text-decoration: none;
+        display: inline-block;
+    }
+
+    .btn-apply:hover {
+        background-position: right center;
+        transform: translateY(-3px);
+        box-shadow: 0 7px 20px rgba(155, 77, 202, 0.3);
+        color: white;
+    }
+
+    .btn-apply:active {
+        transform: translateY(-1px);
+    }
+
+    .btn-apply::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: -100%;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(90deg, rgba(255,255,255,0.2), rgba(255,255,255,0));
+        transform: skewX(-25deg);
+        transition: 0.5s;
+    }
+
+    .btn-apply:hover::before {
+        left: 100%;
+    }
+</style>
+
 <div class="border-bottom row" style="margin-bottom: 16px;">
     <div class="col-9">
         <h4 style="margin-bottom: 4px;">
@@ -13,7 +59,10 @@
             <b>Location: </b>{{job['location']}}
         </div>
     </div>
-    <div class="col-3">
-        <a href="mailto:uvinduchamath@gmail.com?subject=Application%20for%20{{job['title'] | urlencode}}" class="btn btn-outline-primary">Apply</a>
+    <div class="col-3 d-flex align-items-center justify-content-end">
+        <a href="mailto:uvinduchamath@gmail.com?subject=Application%20for%20{{job['title'] | urlencode}}" 
+           class="btn-apply">
+            Apply
+        </a>
     </div>
 </div>
